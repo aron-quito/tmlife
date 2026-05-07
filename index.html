@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TomoLife 2D Prototype</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 2D Environment -->
+        <main id="world">
+            <div class="world-grid"></div>
+            <div id="characters-container"></div>
+        </main>
+
+        <!-- Player / God Console -->
+        <aside id="player-console">
+            <header class="console-header">
+                <h2>God Console</h2>
+                <div class="header-actions">
+                    <button id="btn-settings" class="btn-icon" title="Configurar API">⚙️</button>
+                    <div class="status-indicator online" title="Status"></div>
+                </div>
+            </header>
+
+            <!-- API Key Setup Panel -->
+            <section id="api-setup" class="hidden">
+                <label>Gemini API Key (Gratis)</label>
+                <input type="password" id="api-key-input" placeholder="AIzaSy...">
+                <button id="save-api-key" class="btn primary small">Guardar</button>
+            </section>
+
+            <!-- Character Selection / Info -->
+            <section id="character-info" class="hidden">
+                <div class="char-header">
+                    <div id="char-avatar" class="avatar">👤</div>
+                    <div class="char-title">
+                        <h3 id="char-name">Select a Character</h3>
+                        <span id="char-archetype" class="badge">None</span>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <label>Energy</label>
+                        <div class="progress-bar">
+                            <div id="stat-energy" class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <label>Hunger</label>
+                        <div class="progress-bar">
+                            <div id="stat-hunger" class="progress-fill alert" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="emotion-box">
+                    <label>Current Emotion</label>
+                    <div id="char-emotion" class="emotion-value">Neutral 😐</div>
+                </div>
+            </section>
+            
+            <div id="no-selection-msg" class="empty-state">
+                <p>Click on a character to interact</p>
+            </div>
+
+            <!-- Memory viewer (simplified for UI) -->
+            <section id="memory-panel" class="hidden">
+                <h4>Short-Term Memory</h4>
+                <p id="short-term-memory" class="memory-text">...</p>
+            </section>
+
+            <!-- Interaction Form -->
+            <section id="interaction-panel">
+                <form id="action-form">
+                    <label for="player-input">Influenciar personaje:</label>
+                    <textarea id="player-input" rows="2" placeholder="Ej. Ve a hablar con Alice sobre comida..." disabled></textarea>
+                    <div class="form-actions">
+                        <button type="button" id="btn-suggest" class="btn secondary" disabled>
+                            <span>Sugerir Tema</span>
+                        </button>
+                        <button type="submit" id="submit-action" class="btn primary" disabled>
+                            <span>Forzar Acción</span>
+                            <div class="loader hidden"></div>
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Interaction Log (System responses) -->
+                <div id="interaction-log">
+                    <div class="log-entry system">System initialized. Waiting for events...</div>
+                </div>
+            </section>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
